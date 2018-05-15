@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { AuthService } from './auth.service'
 
 @Component({
   selector: 'app-login-registration',
@@ -8,12 +9,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class LoginRegistrationComponent implements OnInit {
 
   @Output() userLoggedIn = new EventEmitter();
-  @Output() userRegistered = new EventEmitter();
 	reg : boolean;
   user : any;
   errors : any;
 
-  constructor() { }
+  constructor(private _authService: AuthService) { }
 
   ngOnInit() {
   	this.reg = false;
@@ -38,17 +38,37 @@ export class LoginRegistrationComponent implements OnInit {
   }
 
   login(){
+    this.errors=[];
     for(let key in this.user){
       if(this.user[key] == ""){
         this.errors.push(key + " cannot be blank.");
       }
     }
-    this.userLoggedIn.emit()//add user id
+    let observable = this._authService.login(this.user)
+    observable.subscribe(data =>{
+      if(data['success']){
+        this.userLoggedIn.emit(data);
+      }else{
+        this.errors.push("Failed to log in.");
+        for(let v of data['errors']){
+          this.errors.push(v)
+        }
+      }
+    })
   }
 
   register(){
-  	this.userRegistered.emit()
-    this.userLoggedIn.emit()//add user id
+    this.errors=[];
+    let observable = this._authService.register(this.user)
+    observable.subscribe(data =>{
+      if(data['success']){
+        this.userLoggedIn.emit(data)
+      }else{
+        this.errors.push("Failed to register.")
+        for( let v of data['errors']){
+          this.errors.push(v)
+        }
+      }
+    })
   }
-
 }
