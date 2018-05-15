@@ -14,7 +14,7 @@ module.exports = {
 				}
 				res.json({success: false, errors})
 			}else{
-				res.json({success: true, user: {user_id: user._id, f_name: user.f_name}})
+				res.json({success: true, user: {_id: user._id, f_name: user.f_name}})
 			}
 		})
 	},
@@ -30,7 +30,7 @@ module.exports = {
 				}
 				res.json({success: false, errors})
 			}else if(user){
-				res.json({success: true, user : {user_id: user._id, f_name: user.f_name}})
+				res.json({success: true, user : {_id: user._id, f_name: user.f_name}})
 			}else{
 				res.json({success: false, errors:["Failed to log in."]});
 			}

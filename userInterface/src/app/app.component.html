@@ -10,8 +10,8 @@
 <div *ngIf='loggedin'>
 	<div class="container-fluid main">
 	  <div class="row">
-	    <div class="col-sm-6"><app-submit></app-submit></div>
-	    <div class="col-sm-6"><app-rate></app-rate></div>
+	    <div class="col-sm-6"><app-submit (submitCake)='newCake($event)'></app-submit></div>
+	    <div class="col-sm-6"><app-rate [cakes]='cakes' (rateCake)='rateCake($event)'></app-rate></div>
 	  </div>
 	  <div class="row">
 	    <div class="col-sm-12">

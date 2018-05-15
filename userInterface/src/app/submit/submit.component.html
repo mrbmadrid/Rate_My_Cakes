@@ -1,20 +1,26 @@
 <div class="component-main">
-	<form>
+	<form (submit)='submit()'>
 		<h5 class="center">Submit a cake to be rated</h5>
 		<hr>
 		<div class="row">
 			<div class="col-sm-4 form-titles">
 				<p>Cake Title:</p>
 				<br>
+				<p>Description:</p>
+				<br>
 				<p>Image URL:</p>
 			</div>
 			<div class="col-sm-8 form-inputs">
-				<input type="text" name="">
+				<input type="text" name="cake.title" [(ngModel)]='cake.title'>
 				<br>
 				<br>
-				<input type="text" name="">
+				<textarea name="cake.description" [(ngModel)]='cake.description'></textarea> 
+				<br>
+				<br>
+				<input type="text" name="cake.url" [(ngModel)]='cake.url'>
 			</div>
 		</div>
+		<br>
 		<div class="row submit">
 			<div class="col-sm-12">
 				<input type="submit" name="">

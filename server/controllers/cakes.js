@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-var Cake = mongoose.model('User')
+var Cake = mongoose.model('Cake')
 
 module.exports = {
 	getAll : function(req, res){
@@ -23,8 +23,7 @@ module.exports = {
 	},
 
 	add : function(req, res){
-		console.log(req)
-		var cake = new Cake({baker: req.body.name, title : req.body.title, description : req.body.description})
+		var cake = new Cake({baker: req.body._id, title : req.body.cake.title, description : req.body.cake.description, url: req.body.cake.url, ratings : []})
 		cake.save(function(err){
 			if(err){
 				console.log(err)
@@ -47,7 +46,7 @@ module.exports = {
 	},
 
 	update : function(req, res){
-		Cake.update({_id : req.params.id}, {$set : {$push : {ratings : {user_id: req.session.id, rate: req.body.rate, comment: req.body.comment}}}}, function(err){
+		Cake.findOneAndUpdate({_id : req.params.id}, {$set : {$push : {ratings : {user_id: req.body.user_id, rate: req.body.rate, comment: req.body.comment}}}}, function(err){
 			if(err){
 				console.log(err)
 				res.json({success:false})
@@ -56,6 +55,7 @@ module.exports = {
 			}
 		})
 	},
+
 
 	delete : function(req, res){
 		Cake.remove({_id:req.params.id}, function(err){

@@ -21,12 +21,7 @@ module.exports = function(app){
 	})
 
 	app.post('/cakes', function(req, res){
-		console.log(req)
 		Cake.add(req, res)
-	})
-
-	app.put('/cakes/rate/:id', function(req, res){
-		Cake.rate(req, res)
 	})
 
 	app.put('/cakes/:id', function(req, res){
