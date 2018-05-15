@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-focus',
@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./focus.component.css']
 })
 export class FocusComponent implements OnInit {
-
+	@Input() cake: any;
+	@Input() focus: boolean;
   constructor() { }
 
   ngOnInit() {

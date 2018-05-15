@@ -26,7 +26,6 @@ module.exports = {
 		var cake = new Cake({baker: req.body._id, title : req.body.cake.title, description : req.body.cake.description, url: req.body.cake.url, ratings : []})
 		cake.save(function(err){
 			if(err){
-				console.log(err)
 				res.json({success : false})
 			}else{
 				res.json({success : true})
@@ -37,7 +36,6 @@ module.exports = {
 	rate : function(req, res){
 		Cake.update({_id : req.params.id}, {$set : {$push : {ratings : {user_id: req.session.id, }}}}, function(err){
 			if(err){
-				console.log(err)
 				res.json({success:false})
 			}else{
 				res.json({success : true})
@@ -46,11 +44,11 @@ module.exports = {
 	},
 
 	update : function(req, res){
-		Cake.findOneAndUpdate({_id : req.params.id}, {$set : {$push : {ratings : {user_id: req.body.user_id, rate: req.body.rate, comment: req.body.comment}}}}, function(err){
+		Cake.findOneAndUpdate({_id : req.params.id}, {$push : {ratings : {user_id: req.body.user_id, value: req.body.rate, comment: req.body.comment}}}, function(err){
 			if(err){
-				console.log(err)
 				res.json({success:false})
 			}else{
+
 				res.json({success : true})
 			}
 		})
@@ -60,7 +58,6 @@ module.exports = {
 	delete : function(req, res){
 		Cake.remove({_id:req.params.id}, function(err){
 			if(err){
-				console.log(err)
 				res.json({success:false})
 			}else{
 				res.json({success : true})

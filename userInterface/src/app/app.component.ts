@@ -8,7 +8,9 @@ import { HttpService } from './http.service';
 })
 export class AppComponent {
   cakes : any;
+  focusedCake : any;
   loggedin : boolean;
+  focus: boolean;
   user : any;
 
   constructor(private _http: HttpService){
@@ -51,5 +53,12 @@ export class AppComponent {
   }
 
   focusCake(id){
+    console.log(id)
+    let observable = this._http.getCake(id);
+    observable.subscribe(data =>{
+      console.log(data)
+      this.focus = true;
+      this.focusedCake=data['cake'][0];
+    })
   }
 }

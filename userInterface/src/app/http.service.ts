@@ -17,7 +17,11 @@ export class HttpService {
   }
 
   rateCake(data){
-  	return this._http.put('/cakes/'+data._id, data)
+  	return this._http.put('/cakes/'+data._id, data);
+  }
+
+  getCake(id){
+  	return this._http.get('/cakes/'+id);
   }
 
 }

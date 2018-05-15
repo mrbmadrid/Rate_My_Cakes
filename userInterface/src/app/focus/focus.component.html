@@ -1,3 +1,17 @@
-<p>
-  focus works!
-</p>
+<div class="container-fluid">
+	<div *ngIf='focus' class="row">
+		<div class="col-md-4 focus">
+			<img src="{{cake.url}}">
+		</div>
+		<div class="col-md-6 focus ratings">
+			<div class="row" *ngFor='let rating of cake.ratings'>
+				<div class="col-sm-1">{{rating.value}}</div>
+				<div class="col-sm-11">{{rating.comment}}</div>
+			</div>
+		</div>
+		<div class="col-md-2 focus">
+			<h1>Rating</h1>
+			<h1>{{cake.rating  | number:0}}</h1>
+		</div>
+	</div>
+</div>

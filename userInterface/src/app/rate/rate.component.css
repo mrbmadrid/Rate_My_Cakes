@@ -1,3 +1,8 @@
 img {
 	width: 100%;
 }
+
+.main {
+	overflow: scroll;
+	height: 300px;
+}

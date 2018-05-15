@@ -24,4 +24,20 @@ CakeSchema.pre('save', function(next) {
   next();
 });
 
+CakeSchema.post('findOneAndUpdate', function(doc){
+	let change = false;
+	let sum = 0;
+	for(let rating of doc.ratings){
+		console.log(sum)
+		sum += rating.value
+		change = true;
+	}
+	if(change){
+		doc.rating = sum/doc.ratings.length
+		doc.save()
+	} 
+})
+
+
+
 mongoose.model('Cake', CakeSchema)
