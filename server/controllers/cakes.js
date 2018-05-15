@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-var Cake = mongoose.model('Cake')
+var Cake = mongoose.model('User')
 
 module.exports = {
 	getAll : function(req, res){
@@ -24,8 +24,8 @@ module.exports = {
 
 	add : function(req, res){
 		console.log(req)
-		var task = new Task({baker: req.body.name, title : req.body.title, description : req.body.description})
-		Cake.save(function(err){
+		var cake = new Cake({baker: req.body.name, title : req.body.title, description : req.body.description})
+		cake.save(function(err){
 			if(err){
 				console.log(err)
 				res.json({success : false})

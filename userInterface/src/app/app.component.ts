@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { HttpService } from './http.service';
 
 @Component({
   selector: 'app-root',
@@ -7,14 +8,19 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class AppComponent {
   loggedin : boolean;
-  @Input() user_id;
+  user : any;
 
-  constructor(){
+  constructor(private _http: HttpService){
   	
   }
 
   ngOnInit(){
-  	this.loggedin = false;
+  	this.loggedin = ;
+  }
+
+  login(data){
+    this.user = data.user;
+    this.loggedin = true;
   }
 
 }

@@ -1,31 +1,40 @@
 require('./mongoose')
-var Cakes = require('../controllers/cakes')
+var Cake = require('../controllers/cakes')
+var User = require('../controllers/users')
 
 module.exports = function(app){
 
 	app.get('/cakes', function(req, res){
-		Task.getAll(req, res)
+		Cake.getAll(req, res)
 	})
 
 	app.get('/cakes/:id', function(req, res){
-		Task.getOne(req, res)
+		Cake.getOne(req, res)
+	})
+
+	app.post('/cakes/login', function(req, res){
+		User.login(req, res);
+	})
+
+	app.post('/cakes/register', function(req, res){
+		User.register(req, res);
 	})
 
 	app.post('/cakes', function(req, res){
 		console.log(req)
-		Task.add(req, res)
+		Cake.add(req, res)
 	})
 
 	app.put('/cakes/rate/:id', function(req, res){
-		Task.rate(req, res)
+		Cake.rate(req, res)
 	})
 
 	app.put('/cakes/:id', function(req, res){
-		Task.update(req, res)
+		Cake.update(req, res)
 	})
 
 	app.delete('/cakes/:id', function(req, res){
-		Task.delete(req, res)
+		Cake.delete(req, res)
 	})
 
 }

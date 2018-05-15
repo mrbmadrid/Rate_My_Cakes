@@ -1,9 +1,9 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<app-navbar></app-navbar>
+<app-navbar [user]='user' [loggedin]='loggedin'></app-navbar>
 <div *ngIf='!loggedin'>
 	<div class="row">
 		<div class="col-sm-12 col-md-6 col-lg-4 login-registration">
-			<app-login-registration (userLoggedIn)="login(User)" (userRegistered)="register(user)"></app-login-registration>
+			<app-login-registration (userLoggedIn)='login($event)'></app-login-registration>
 		</div>
 	</div>
 </div>
